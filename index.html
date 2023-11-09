@@ -5,7 +5,12 @@
     <head>
 
         <link rel = "stylesheet" href = "style.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.19.47/system.js" integrity="sha512-mkBpeD76fJnxFHGZstCL0mPCW6E3RFtUzfp5Ye8oQg2rxQNHy4BgHsbmvSizsq3fgF4PGozPI1BzGCB/h1Yq5g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src = "script.js" defer></script>
+        <script>
+            System.default.JSExtensions = true;
+            System.import("script");
+        </script>
 
     </head>
 
@@ -16,6 +21,57 @@
         </header>
 
         <main>
+
+            <table>
+
+            </table>
+
+            <button id = "Add">Add</button>
+
+            <section id = "New" style = "visibility: hidden;">
+                <p style = "text-decoration: underline">Add New:</p>
+                <table>
+                    <tr>
+                        <td>Name</td>
+                        <td><input type = "text"></td>
+                    </tr>
+                    <tr>
+                        <td>Height</td>
+                        <td><input type = "number"></td>
+                    </tr>
+                    <tr>
+                        <td>Weight</td>
+                        <td><input type = "number"></td>
+                    </tr>
+                    <tr>
+                        <td>Personality</td>
+                        <td><input type = "text"></td>
+                    </tr>
+                    <tr>
+                        <td>Category</td>
+                        <td>
+                            <select>
+                                <option value = "Grey">Grey</option>
+                                <option value = "Chestnut">Chestnut</option>
+                                <option value = "White">White</option>
+                                <option value = "Black">Black</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Breed</td>
+                        <td>
+                            <select>
+
+                            </select>
+                        </td>
+                    </tr>
+                    <tr id = "Ability">
+                        <td>Ability</td>
+                        <td><input></td>
+                    </tr>
+                </table>
+            </section>
 
         </main>
 
