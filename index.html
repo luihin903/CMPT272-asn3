@@ -6,9 +6,9 @@
 
         <link rel = "stylesheet" href = "style.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.19.47/system.js" integrity="sha512-mkBpeD76fJnxFHGZstCL0mPCW6E3RFtUzfp5Ye8oQg2rxQNHy4BgHsbmvSizsq3fgF4PGozPI1BzGCB/h1Yq5g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src = "script.js" defer></script>
+        <!-- <script src = "system.js"></script> -->
         <script>
-            System.default.JSExtensions = true;
+            System.defaultJSExtensions = true;
             System.import("script");
         </script>
 
@@ -28,49 +28,56 @@
 
             <button id = "Add">Add</button>
 
-            <section id = "New" style = "visibility: hidden;">
+            <section id = "New" style = "visibility: hidden; border: 1px solid black">
                 <p style = "text-decoration: underline">Add New:</p>
-                <table>
-                    <tr>
-                        <td>Name</td>
-                        <td><input type = "text"></td>
-                    </tr>
-                    <tr>
-                        <td>Height</td>
-                        <td><input type = "number"></td>
-                    </tr>
-                    <tr>
-                        <td>Weight</td>
-                        <td><input type = "number"></td>
-                    </tr>
-                    <tr>
-                        <td>Personality</td>
-                        <td><input type = "text"></td>
-                    </tr>
-                    <tr>
-                        <td>Category</td>
-                        <td>
-                            <select>
-                                <option value = "Grey">Grey</option>
-                                <option value = "Chestnut">Chestnut</option>
-                                <option value = "White">White</option>
-                                <option value = "Black">Black</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Breed</td>
-                        <td>
-                            <select>
-
-                            </select>
-                        </td>
-                    </tr>
-                    <tr id = "Ability">
-                        <td>Ability</td>
-                        <td><input></td>
-                    </tr>
-                </table>
+                <form>
+                    <table>
+                        <tr>
+                            <td>Name</td>
+                            <td><input type = "text" id = "Name"></td>
+                        </tr>
+                        <tr>
+                            <td>Height</td>
+                            <td><input type = "number" id = "Height"></td>
+                        </tr>
+                        <tr>
+                            <td>Weight</td>
+                            <td><input type = "number" id = "Weight"></td>
+                        </tr>
+                        <tr>
+                            <td>Personality</td>
+                            <td><input type = "text" id = "Personality"></td>
+                        </tr>
+                        <tr>
+                            <td>Category</td>
+                            <td>
+                                <select id = "Category">
+                                    <option value = "GreyPig">Grey Pig</option>
+                                    <option value = "ChestnutPig">Chestnut Pig</option>
+                                    <option value = "WhitePig">White Pig</option>
+                                    <option value = "BlackPig">Black Pig</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Breed</td>
+                            <td>
+                                <select id = "Breed">
+                                    <option class = "Breeds" value = "NotGrey">NotGrey</option>
+                                    <option class = "Breeds" value = "LessGrey">LessGrey</option>
+                                    <option class = "Breeds" value = "NormalGrey">NormalGrey</option>
+                                    <option class = "Breeds" value = "MoreGrey">MoreGrey</option>
+                                    <option class = "Breeds" value = "SuperGrey">SuperGrey</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr id = "Ability">
+                            <td>Swimming</td>
+                            <td><input type = "number"></td>
+                        </tr>
+                    </table>
+                    <button id = "submit" type = "button">Create</button>
+                </form>
             </section>
 
         </main>
