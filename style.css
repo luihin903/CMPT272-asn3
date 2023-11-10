@@ -7,6 +7,10 @@ table, td {
     border-collapse: collapse;
 }
 
+td {
+    width: 80px;
+}
+
 input {
     border: none;
 }

@@ -1,9 +1,14 @@
 import { PigController } from "./PigController";
 import { GreyBreeds, ChestnutBreeds, WhiteBreeds, BlackBreeds } from "./Enums";
+import { ChestnutPig } from "./pigs/ChestnutPig";
+import { GreyPig } from "./pigs/GreyPig";
+import { Pig } from "./Pig";
 
 var breeds = document.getElementsByClassName("Breeds");
 var ability =document.getElementById("Ability");
 var pc = new PigController();
+
+display();
 
 // add pig button
 document.getElementById("Add")?.addEventListener("click", function(event) {
@@ -66,6 +71,17 @@ document.getElementById("submit")?.addEventListener("click", function(event) {
         Number((<HTMLInputElement>(document.getElementById("Weight")!)).value),
         (<HTMLInputElement>(document.getElementById("Personality")!)).value,
         (<HTMLSelectElement>(document.getElementById("Breed")!)).selectedIndex,
-        (<HTMLInputElement>(document.getElementById("Ability")!)).value
+        document.getElementById("Ability")!.getElementsByTagName("input")[0].value
     )
 })
+
+function display() {
+    console.log(pc.getAll());
+    var rows: string[] = [];
+    rows.push("<tr style = 'font-weight: bold;'>" + "<td>Name</td>" + "<td>Category</td>" + "<td></td>" + "<td></td>" + "</tr>");
+    for (var i: number = 0; i < pc.getAll().length; i ++) {
+        var pig: Pig = pc.getAll()[i];
+        rows.push("<tr>" + "<td>" + pig.name + "</td>" + "<td>" + pig.category + "</td>" + "</tr>");
+    }
+    document.getElementById("Display")!.innerHTML = rows.join("");
+}

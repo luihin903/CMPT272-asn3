@@ -4,6 +4,7 @@ import {BlackBreeds} from "../Enums";
 export class BlackPig extends Pig {
     strength: number;
     breed: BlackBreeds;
+    category: string = "Black";
 
     constructor(strength: number, breed: BlackBreeds, name: string, height: number, weight: number, personality: string) {
         super(name, height, weight, personality);

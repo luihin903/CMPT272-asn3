@@ -7,6 +7,7 @@ System.register([], function (exports_1, context_1) {
         execute: function () {
             Pig = class Pig {
                 constructor(name, height, weight, personality) {
+                    this.category = "Pig";
                     this.name = name;
                     this.height = height;
                     this.weight = weight;

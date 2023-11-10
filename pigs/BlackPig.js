@@ -12,6 +12,7 @@ System.register(["../Pig"], function (exports_1, context_1) {
             BlackPig = class BlackPig extends Pig_1.Pig {
                 constructor(strength, breed, name, height, weight, personality) {
                     super(name, height, weight, personality);
+                    this.category = "Black";
                     this.strength = strength;
                     this.breed = breed;
                 }
