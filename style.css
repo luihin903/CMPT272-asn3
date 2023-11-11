@@ -1,16 +1,46 @@
-html {
+html, input, select {
     font-family: Arial, Helvetica, sans-serif;
+    background-color: #d9d9d9;
+}
+
+section {
+    padding: 16px;
+    visibility: hidden;
+    position: absolute;
+    border: 1.5px solid black;
 }
 
 table, td {
-    border: 1px solid black;
+    border: 1.5px solid black;
     border-collapse: collapse;
 }
 
 td {
     width: 80px;
+    padding-top: 0px;
+    padding-left: 4px;
+    padding-bottom: 4px;
 }
 
-input {
+td.title {
+    font-weight: bold;
+}
+
+input, select {
     border: none;
+    width: 100px;
+}
+
+button {
+    background-color: #ffe699;
+    border-radius: 4px;
+    border: 1.5px solid #426090;
+    margin-top: 8px;
+}
+
+p {
+    margin-left: 8px;
+    margin-top: 0px;
+    font-weight: bold;
+    text-decoration: underline;
 }

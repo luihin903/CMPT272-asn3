@@ -28,28 +28,28 @@
 
             <button id = "Add">Add</button>
 
-            <section id = "New" style = "visibility: hidden; border: 1px solid black">
-                <p style = "text-decoration: underline">Add New:</p>
+            <section id = "New" class = "center vertical horizontal">
+                <p>Add New:</p>
                 <form>
                     <table>
                         <tr>
-                            <td>Name</td>
+                            <td class = "title" style = "width: 100px;">Name</td>
                             <td><input type = "text" id = "Name"></td>
                         </tr>
                         <tr>
-                            <td>Height</td>
-                            <td><input type = "number" id = "Height"></td>
+                            <td class = "title">Height (cm)</td>
+                            <td><input type = "number" step = "0.01" id = "Height"></td>
                         </tr>
                         <tr>
-                            <td>Weight</td>
-                            <td><input type = "number" id = "Weight"></td>
+                            <td class = "title">Weight (kg)</td>
+                            <td><input type = "number" step = "0.01" id = "Weight"></td>
                         </tr>
                         <tr>
-                            <td>Personality</td>
+                            <td class = "title">Personality</td>
                             <td><input type = "text" id = "Personality"></td>
                         </tr>
                         <tr>
-                            <td>Category</td>
+                            <td class = "title">Category</td>
                             <td>
                                 <select id = "Category">
                                     <option value = "GreyPig">Grey Pig</option>
@@ -60,7 +60,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Breed</td>
+                            <td class = "title">Breed</td>
                             <td>
                                 <select id = "Breed">
                                     <option class = "Breeds" value = "NotGrey">NotGrey</option>
@@ -72,16 +72,27 @@
                             </td>
                         </tr>
                         <tr id = "Ability">
-                            <td>Swimming</td>
-                            <td><input type = "number"></td>
+                            <td class = "title">Swimming</td>
+                            <td><input type = "number" step = "0.01"></td>
                         </tr>
                     </table>
                     <button id = "submit">Create</button>
                 </form>
             </section>
 
-        </main>
+            <section id = "More" class = "center vertical horizontal">
+                <p>More Info:</p>
+                <table>
+                    <tr></tr>
+                    <tr></tr>
+                    <tr></tr>
+                    <tr></tr>
+                    <tr></tr>
+                    <tr></tr>
+                </table>
+            </section>
 
+        </main>
     </body>
 
 </html>
