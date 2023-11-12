@@ -29,6 +29,9 @@ System.register(["./pigs/GreyPig", "./pigs/ChestnutPig", "./pigs/WhitePig", "./p
                     this.blacks = [];
                     this.load();
                 }
+                getAll() {
+                    return [...this.greys, ...this.chestnuts, ...this.whites, ...this.blacks];
+                }
                 add(category, name, height, weight, personality, breedIndex, ability) {
                     var breed;
                     switch (category) {
@@ -54,6 +57,43 @@ System.register(["./pigs/GreyPig", "./pigs/ChestnutPig", "./pigs/WhitePig", "./p
                             ability = Number(ability);
                             breed = Enums_1.BlackBreeds[breedIndex];
                             this.insertBlack(new BlackPig_1.BlackPig(ability, breed, name, height, weight, personality));
+                            break;
+                        }
+                    }
+                    this.save();
+                }
+                delete(index) {
+                    switch (this.getAll()[index].category) {
+                        case "Grey": {
+                            for (var i = 0; i < this.greys.length; i++) {
+                                if (this.greys[i] == this.getAll()[index]) {
+                                    this.greys.splice(i, 1);
+                                }
+                            }
+                            break;
+                        }
+                        case "Chestnut": {
+                            for (var i = 0; i < this.chestnuts.length; i++) {
+                                if (this.chestnuts[i] == this.getAll()[index]) {
+                                    this.chestnuts.splice(i, 1);
+                                }
+                            }
+                            break;
+                        }
+                        case "White": {
+                            for (var i = 0; i < this.whites.length; i++) {
+                                if (this.whites[i] == this.getAll()[index]) {
+                                    this.whites.splice(i, 1);
+                                }
+                            }
+                            break;
+                        }
+                        case "Black": {
+                            for (var i = 0; i < this.blacks.length; i++) {
+                                if (this.blacks[i] == this.getAll()[index]) {
+                                    this.blacks.splice(i, 1);
+                                }
+                            }
                             break;
                         }
                     }
@@ -142,9 +182,6 @@ System.register(["./pigs/GreyPig", "./pigs/ChestnutPig", "./pigs/WhitePig", "./p
                             }
                         }
                     }
-                }
-                getAll() {
-                    return [...this.greys, ...this.chestnuts, ...this.whites, ...this.blacks];
                 }
                 save() {
                     localStorage.setItem("greys", JSON.stringify(this.greys));

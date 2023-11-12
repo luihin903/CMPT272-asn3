@@ -3,6 +3,7 @@ import { ChestnutPig } from "./pigs/ChestnutPig";
 import { WhitePig } from "./pigs/WhitePig";
 import { BlackPig } from "./pigs/BlackPig";
 import { BlackBreeds, ChestnutBreeds, GreyBreeds, WhiteBreeds } from "./Enums";
+import { Pig } from "./Pig";
 
 export class PigController {
     greys: GreyPig[];
@@ -19,7 +20,11 @@ export class PigController {
         this.load();
     }
 
-    add(category: number, name: string, height: number, weight: number, personality: string, breedIndex: number, ability: string|number) {
+    getAll(): Pig[] {
+        return [...this.greys, ...this.chestnuts, ...this.whites, ...this.blacks];
+    }
+
+    add(category: number, name: string, height: number, weight: number, personality: string, breedIndex: number, ability: string|number): void {
         var breed: GreyBreeds|ChestnutBreeds|WhiteBreeds|BlackBreeds;
         switch (category) {
             case 0: {
@@ -51,7 +56,45 @@ export class PigController {
         this.save();
     }
 
-    insertGrey(obj: GreyPig) {
+    delete(index: number): void {
+        switch (this.getAll()[index].category) {
+            case "Grey": {
+                for (var i: number = 0; i < this.greys.length; i ++) {
+                    if (this.greys[i] == this.getAll()[index]) {
+                        this.greys.splice(i, 1);
+                    }
+                }
+                break;
+            }
+            case "Chestnut": {
+                for (var i: number = 0; i < this.chestnuts.length; i ++) {
+                    if (this.chestnuts[i] == this.getAll()[index]) {
+                        this.chestnuts.splice(i, 1);
+                    }
+                }
+                break;
+            }
+            case "White": {
+                for (var i: number = 0; i < this.whites.length; i ++) {
+                    if (this.whites[i] == this.getAll()[index]) {
+                        this.whites.splice(i, 1);
+                    }
+                }
+                break;
+            }
+            case "Black": {
+                for (var i: number = 0; i < this.blacks.length; i ++) {
+                    if (this.blacks[i] == this.getAll()[index]) {
+                        this.blacks.splice(i, 1);
+                    }
+                }
+                break;
+            }
+        }
+        this.save();
+    }
+
+    insertGrey(obj: GreyPig): void {
         if (this.greys.length == 0) {
             this.greys.push(obj);
         }
@@ -73,7 +116,7 @@ export class PigController {
         }
     }
 
-    insertChestnut(obj: ChestnutPig) {
+    insertChestnut(obj: ChestnutPig): void {
         if (this.chestnuts.length == 0) {
             this.chestnuts.push(obj);
         }
@@ -95,7 +138,7 @@ export class PigController {
         }
     }
 
-    insertWhite(obj: WhitePig) {
+    insertWhite(obj: WhitePig): void {
         if (this.whites.length == 0) {
             this.whites.push(obj);
         }
@@ -117,7 +160,7 @@ export class PigController {
         }
     }
 
-    insertBlack(obj: BlackPig) {
+    insertBlack(obj: BlackPig): void {
         if (this.blacks.length == 0) {
             this.blacks.push(obj);
         }
@@ -139,18 +182,14 @@ export class PigController {
         }
     }
 
-    getAll() {
-        return [...this.greys, ...this.chestnuts, ...this.whites, ...this.blacks];
-    }
-
-    save() {
+    save(): void {
         localStorage.setItem("greys", JSON.stringify(this.greys));
         localStorage.setItem("chestnuts", JSON.stringify(this.chestnuts));
         localStorage.setItem("whites", JSON.stringify(this.whites));
         localStorage.setItem("blacks", JSON.stringify(this.blacks));
     }
 
-    load() {        
+    load(): void {        
         if (localStorage.getItem("greys") != null) this.greys = JSON.parse(localStorage.getItem("greys") || "") as GreyPig[];
         if (localStorage.getItem("chestnuts") != null) this.chestnuts = JSON.parse(localStorage.getItem("chestnuts") || "") as ChestnutPig[];
         if (localStorage.getItem("whites") != null) this.whites = JSON.parse(localStorage.getItem("whites") || "") as WhitePig[];

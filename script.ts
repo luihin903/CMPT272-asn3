@@ -7,19 +7,24 @@ import { WhitePig } from "./pigs/WhitePig";
 import { BlackPig } from "./pigs/BlackPig";
 
 var breeds = document.getElementsByClassName("Breeds");
-var ability =document.getElementById("Ability");
-var pc = new PigController();
+var ability = document.getElementById("Ability");
+var pc: PigController = new PigController();
 
 display();
 
 // add pig button
-document.getElementById("Add")?.addEventListener("click", function(event) {
-    document.getElementById("New")!.style.visibility = "visible";
+document.getElementById("Add")?.addEventListener("click", function(event): void {
     document.getElementById("More")!.style.visibility = "hidden";
+
+    if (document.getElementById("New")!.style.visibility == "hidden")
+        document.getElementById("New")!.style.visibility = "visible";
+    else {
+        document.getElementById("New")!.style.visibility = "hidden";
+    }
 })
 
 // change inputs based on category
-document.getElementById("Category")?.addEventListener("change", function(event) {
+document.getElementById("Category")?.addEventListener("change", function(event): void {
 
     ability =document.getElementById("Ability");
     console.log(ability);
@@ -68,8 +73,7 @@ document.getElementById("Category")?.addEventListener("change", function(event) 
 })
 
 // create new pig
-document.getElementById("submit")?.addEventListener("click", function(event) {
-	console.log("pressed")
+document.getElementById("submit")?.addEventListener("click", function(event): void {
     pc.add(
         (<HTMLSelectElement>(document.getElementById("Category")!)).selectedIndex,
         (<HTMLInputElement>(document.getElementById("Name")!)).value,
@@ -81,80 +85,7 @@ document.getElementById("submit")?.addEventListener("click", function(event) {
     )
 })
 
-// more info
-for (let a of document.querySelectorAll("a.more")) {
-    a.addEventListener("click", function(event) {
-        event.preventDefault();
-        document.getElementById("New")!.style.visibility = "hidden";
-        document.getElementById("More")!.style.visibility = "visible";
-
-        var tr = document.getElementById("More")!.getElementsByTagName("tr");
-        let index: number = Number(a.getAttribute("index"));
-        let pig: Pig = pc.getAll()[index];
-        
-        switch (a.getAttribute("category")) {
-            case "Grey": {
-                tr[1].innerHTML = 
-                    "<td class = 'title'>" + "Breed" + "</td>" +
-                    "<td>" + (<GreyPig>pig).breed + "</td>";
-                tr[4].innerHTML = 
-                    "<td class = 'title'>" + "Swimming" + "</td>" +
-                    "<td>" + (<GreyPig>pig).swimming + "</td>";
-                break;
-            }
-            case "Chestnut": {
-                tr[1].innerHTML = 
-                    "<td class = 'title'>" + "Breed" + "</td>" +
-                    "<td>" + (<ChestnutPig>pig).breed + "</td>";
-                tr[4].innerHTML = 
-                    "<td class = 'title'>" + "Language" + "</td>" +
-                    "<td>" + (<ChestnutPig>pig).language + "</td>";
-                break;
-            }
-            case "White": {
-                tr[1].innerHTML = 
-                    "<td class = 'title'>" + "Breed" + "</td>" +
-                    "<td>" + (<WhitePig>pig).breed + "</td>";
-                tr[4].innerHTML = 
-                    "<td class = 'title'>" + "Running" + "</td>" +
-                    "<td>" + (<WhitePig>pig).running + "</td>";
-                break;
-            }
-            case "Black": {
-                tr[1].innerHTML = 
-                    "<td class = 'title'>" + "Breed" + "</td>" +
-                    "<td>" + (<BlackPig>pig).breed + "</td>";
-                tr[4].innerHTML = 
-                    "<td class = 'title'>" + "Strength" + "</td>" +
-                    "<td>" + (<BlackPig>pig).strength + "</td>";
-                break;
-            }
-        }
-
-        tr[0].innerHTML =
-            "<td class = 'title' style = 'width: 100px;'>" + "Name" + "</td>" +
-            "<td>" + pig.name + "</td>";
-        tr[2].innerHTML = 
-            "<td class = 'title'>" + "Height (cm)" + "</td>" +
-            "<td>" + pig.height + "</td>";
-        tr[3].innerHTML = 
-            "<td class = 'title'>" + "Weight (kg)" + "</td>" +
-            "<td>" + pig.weight + "</td>";
-        tr[5].innerHTML = 
-            "<td class = 'title'>" + "Personality" + "</td>" +
-            "<td>" + pig.personality + "</td>";
-    })
-}
-
-// delete
-for (let a of document.querySelectorAll("a.delete")) {
-    a.addEventListener("click", function(event) {
-        event.preventDefault();
-    })
-}
-
-function display() {
-    console.log(pc.getAll());
+function display(): void {
     var rows: string[] = [];
     rows.push("<tr style = 'font-weight: bold;'>" + "<td>Name</td>" + "<td>Category</td>" + "<td></td>" + "<td></td>" + "</tr>");
     for (var i: number = 0; i < pc.getAll().length; i ++) {
@@ -168,9 +99,92 @@ function display() {
             "</tr>");
     }
     document.getElementById("Display")!.innerHTML = rows.join("");
+
+    // more info
+    for (let a of document.querySelectorAll("a.more")) {
+        a.addEventListener("click", function(event): void {
+            event.preventDefault();
+            document.getElementById("New")!.style.visibility = "hidden";
+
+            if (document.getElementById("More")!.style.visibility == "hidden")
+                document.getElementById("More")!.style.visibility = "visible";
+            else {
+                document.getElementById("More")!.style.visibility = "hidden";
+            }
+
+            var tr = document.getElementById("More")!.getElementsByTagName("tr");
+            let index: number = Number(a.getAttribute("index"));
+            let pig: Pig = pc.getAll()[index];
+            
+            switch (a.getAttribute("category")) {
+                case "Grey": {
+                    tr[1].innerHTML = 
+                        "<td class = 'title'>" + "Breed" + "</td>" +
+                        "<td>" + (<GreyPig>pig).breed + "</td>";
+                    tr[4].innerHTML = 
+                        "<td class = 'title'>" + "Swimming" + "</td>" +
+                        "<td>" + (<GreyPig>pig).swimming + "</td>";
+                    break;
+                }
+                case "Chestnut": {
+                    tr[1].innerHTML = 
+                        "<td class = 'title'>" + "Breed" + "</td>" +
+                        "<td>" + (<ChestnutPig>pig).breed + "</td>";
+                    tr[4].innerHTML = 
+                        "<td class = 'title'>" + "Language" + "</td>" +
+                        "<td>" + (<ChestnutPig>pig).language + "</td>";
+                    break;
+                }
+                case "White": {
+                    tr[1].innerHTML = 
+                        "<td class = 'title'>" + "Breed" + "</td>" +
+                        "<td>" + (<WhitePig>pig).breed + "</td>";
+                    tr[4].innerHTML = 
+                        "<td class = 'title'>" + "Running" + "</td>" +
+                        "<td>" + (<WhitePig>pig).running + "</td>";
+                    break;
+                }
+                case "Black": {
+                    tr[1].innerHTML = 
+                        "<td class = 'title'>" + "Breed" + "</td>" +
+                        "<td>" + (<BlackPig>pig).breed + "</td>";
+                    tr[4].innerHTML = 
+                        "<td class = 'title'>" + "Strength" + "</td>" +
+                        "<td>" + (<BlackPig>pig).strength + "</td>";
+                    break;
+                }
+            }
+
+            tr[0].innerHTML =
+                "<td class = 'title' style = 'width: 100px;'>" + "Name" + "</td>" +
+                "<td>" + pig.name + "</td>";
+            tr[2].innerHTML = 
+                "<td class = 'title'>" + "Height (cm)" + "</td>" +
+                "<td>" + pig.height + "</td>";
+            tr[3].innerHTML = 
+                "<td class = 'title'>" + "Weight (kg)" + "</td>" +
+                "<td>" + pig.weight + "</td>";
+            tr[5].innerHTML = 
+                "<td class = 'title'>" + "Personality" + "</td>" +
+                "<td>" + pig.personality + "</td>";
+        })
+    }
+
+    // delete
+    for (let a of document.querySelectorAll("a.delete")) {
+        a.addEventListener("click", function(event): void {
+            event.preventDefault();
+            let index: number = Number(a.getAttribute("index"));
+    
+            if (window.confirm("Do you want to delete " + pc.getAll()[index].name + "?")) {
+                pc.delete(index);
+                display();
+            }
+        })
+    }
 }
 
-setInterval(function() {
+setInterval(function(): void {
     var vertical = document.querySelectorAll(".center.vertical");
     var horizontal = document.querySelectorAll(".center.horizontal");
     var width: number = Number(document.getElementsByTagName("html")[0].offsetWidth);
